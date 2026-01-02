@@ -3,529 +3,613 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ed TV</title>
+    <title>Pixel Studios</title>
+    <meta name="description" content="Pixel Studios es un estudio de desarrollo especializado en crear experiencias únicas. Más de 5 años de experiencia innovando.">
+    
+    <!-- Google Fonts: Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
     <style>
-        /* --- ESTILOS GLOBALES Y CLON DE OME TV --- */
+        /* --- VARIABLES GLOBALES --- */
+        :root {
+            --primary-color: #00D9FF;
+            --secondary-color: #FF00F5;
+            --background-color: #0C0C0C;
+            --surface-color: #161616;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A0A0A0;
+            --font-family: 'Montserrat', sans-serif;
+        }
+
+        /* --- RESETEO Y ESTILOS BASE --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: #000;
-            color: #fff;
-            overflow: hidden;
-            height: 100vh;
-            display: flex;
+            font-family: var(--font-family);
+            background-color: var(--background-color);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* --- LADO IZQUIERDO (INTERFAZ DE USUARIO) --- */
-        .user-interface {
-            width: 30%;
-            min-width: 300px;
-            background-color: #111;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        h1, h2, h3 {
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        a {
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        section {
+            padding: 100px 0;
+        }
+
+        /* --- HEADER Y NAVEGACIÓN --- */
+        .main-header {
+            background-color: rgba(12, 12, 12, 0.7);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .main-nav {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .logo-section {
-            text-align: center;
-            margin-bottom: 40px; /* Aumenté el margen para rellenar el espacio */
+            padding: 1.5rem 0;
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .logo i {
-            color: #ff9500;
-            margin-right: 10px;
             font-size: 2rem;
+            font-weight: 900;
+            color: var(--text-primary);
+            letter-spacing: -1px;
         }
 
-        .online-users {
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-        .active-viewers {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 5px;
-        }
-
-        /* Sección de botones de descarga eliminada */
-
-        .control-buttons {
-            display: flex;
-            flex-direction: column;
-            width: 100%;
-            gap: 10px;
-        }
-
-        .control-btn {
-            padding: 12px;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: bold;
-            color: #fff;
-            background-color: #ff9500;
-            cursor: pointer;
-            transition: background-color 0.3s, transform 0.2s;
-        }
-
-        .control-btn:hover {
-            background-color: #e68500;
-            transform: translateY(-2px);
-        }
-
-        .control-btn.stop {
-            background-color: #d32f2f;
-        }
-
-        .control-btn.stop:hover {
-            background-color: #b71c1c;
-        }
-
-        /* --- LADO DERECHO (VIDEO Y CHAT) --- */
-        .video-chat-area {
-            flex-grow: 1;
-            position: relative;
-            background-color: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* --- VIDEOS --- */
-        #strangerVideo {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: none;
-        }
-
-        #userVideo {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            width: 200px;
-            height: 150px;
-            object-fit: cover;
-            border-radius: 10px;
-            border: 2px solid #ff9500;
-            z-index: 3;
-            display: none;
-        }
-        
-        /* --- MENSAJES Y CONTROLES SOBRE EL VIDEO --- */
-        .overlay-message {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            color: #fff;
-            background-color: rgba(0, 0, 0, 0.7);
-            padding: 20px 30px;
-            border-radius: 10px;
-            z-index: 4;
-        }
-
-        .top-controls {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 4;
-            display: none;
-        }
-
-        .top-controls button {
-            background: rgba(0,0,0,0.5);
-            border: none;
-            color: #fff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            margin-left: 15px;
-            padding: 8px;
-            border-radius: 5px;
-            transition: background-color 0.3s;
-        }
-        .top-controls button:hover {
-            background-color: rgba(255,255,255,0.2);
-        }
-        .top-controls button.active {
-            color: #ff9500;
-        }
-
-        .report-btn {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: rgba(0,0,0,0.5);
-            border: none;
-            color: #fff;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 5px;
-            z-index: 4;
-            display: none;
-        }
-        .report-btn:hover {
-            color: #d32f2f;
-        }
-
-        /* --- CHAT --- */
-        .chat-overlay {
-            position: absolute;
-            bottom: 20px;
-            right: 20px;
-            width: 40%;
-            max-width: 450px;
-            height: 50%;
-            background-color: rgba(0, 0, 0, 0.6);
-            border-radius: 10px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 4;
-        }
-
-        .chat-messages {
-            flex-grow: 1;
-            padding: 15px;
-            overflow-y: auto;
-            font-size: 0.9rem;
-        }
-
-        .message {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            border-radius: 15px;
-            max-width: 80%;
-            line-height: 1.4;
-            word-wrap: break-word;
-        }
-
-        .message.you {
-            background-color: #007aff;
-            align-self: flex-end;
-            text-align: right;
-        }
-
-        .message.stranger {
-            background-color: #333;
-            align-self: flex-start;
-        }
-
-        .chat-input-area {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #444;
-        }
-
-        .chat-input-area input {
-            flex-grow: 1;
-            padding: 8px;
-            border: 1px solid #555;
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border-radius: 15px;
-            outline: none;
-        }
-
-        /* --- MODALS --- */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 10;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            justify-content: center;
-            align-items: center;
-        }
-        .modal-content {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 10px;
-            width: 80%;
-            max-width: 400px;
-            text-align: center;
-        }
-        .modal-content ul {
+        .nav-links {
             list-style: none;
-            text-align: left;
-            padding: 0;
+            display: flex;
+            gap: 2.5rem;
         }
-        .modal-content li {
-            padding: 10px;
-            border-bottom: 1px solid #444;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-        .modal-content li:hover {
-            background-color: #333;
-        }
-        .close-modal {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-        .close-modal:hover { color: #fff; }
 
+        .nav-links a {
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* --- SECCIÓN HERO --- */
+        .hero {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1550745165-9bc0b252726a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(12, 12, 12, 0.5), rgba(12, 12, 12, 0.9));
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(3rem, 10vw, 6.5rem);
+            margin-bottom: 0.5rem;
+            font-weight: 900;
+            letter-spacing: -3px;
+            line-height: 0.9;
+        }
+
+        .hero-content .tagline-1 {
+            font-size: clamp(1.5rem, 4vw, 2.2rem);
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-content .tagline-2 {
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* --- NUEVO ESTILO PARA EL PÁRRAFO DESCRIPTIVO --- */
+        .hero-content .hero-description {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 2.5rem auto 0 auto; /* Añade espacio arriba y centra el párrafo */
+            font-weight: 400;
+            line-height: 1.7;
+        }
+
+        /* --- SECCIÓN MINECRAFT --- */
+        .minecraft-section .container {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+        }
+        .minecraft-text {
+            flex: 1;
+        }
+        .minecraft-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        .minecraft-text p {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+        }
+        .minecraft-services {
+            list-style: none;
+        }
+        .minecraft-services li {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+        }
+        .minecraft-services i {
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+        }
+        .minecraft-image {
+            flex: 1;
+        }
+        .minecraft-image img {
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+        }
+
+        /* --- SECCIÓN COLABORADORES --- */
+        .colaboradores {
+            background-color: var(--surface-color);
+            text-align: center;
+        }
+        .colaboradores h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+        .colaboradores-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .colaboradores-logos .logo-item {
+            font-size: 3rem;
+            color: var(--text-secondary);
+            opacity: 0.6;
+            transition: all 0.3s ease;
+        }
+        .colaboradores-logos .logo-item:hover {
+            opacity: 1;
+            color: var(--primary-color);
+            transform: scale(1.1);
+        }
+
+        /* --- SECCIÓN EQUIPO --- */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .team-card {
+            background-color: var(--surface-color);
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
+        }
+        .team-card img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem auto;
+            border: 4px solid var(--primary-color);
+        }
+        .team-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+        .team-card p {
+            color: var(--primary-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        /* --- SECCIÓN CONTACTO --- */
+        .contacto {
+            background-color: var(--surface-color);
+        }
+        .contacto .container {
+            display: flex;
+            gap: 4rem;
+        }
+        .contact-form, .contact-info {
+            flex: 1;
+        }
+        .contacto h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+        }
+        .contact-form .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .contact-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--background-color);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            color: var(--text-primary);
+            font-family: var(--font-family);
+            transition: border-color 0.3s ease;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        .contact-form button {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 12px 30px;
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+        .contact-form button:hover {
+            background-color: var(--secondary-color);
+            color: var(--text-primary);
+        }
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .contact-info i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* --- FOOTER --- */
+        .main-footer {
+            background-color: var(--background-color);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .social-links {
+            margin-bottom: 1.5rem;
+        }
+        .social-links a {
+            font-size: 1.8rem;
+            margin: 0 15px;
+            color: var(--text-secondary);
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--primary-color);
+            transform: translateY(-5px);
+        }
+        .main-footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: rgba(12, 12, 12, 0.98);
+                flex-direction: column;
+                justify-content: start;
+                align-items: center;
+                padding-top: 3rem;
+                gap: 2rem;
+                transition: right 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            }
+            .nav-links.nav-active {
+                right: 0;
+            }
+            .menu-toggle {
+                display: block;
+            }
+            section {
+                padding: 70px 0;
+            }
+            .hero {
+                background-attachment: scroll;
+            }
+            .minecraft-section .container,
+            .contacto .container {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
     </style>
-    <!-- Font Awesome para iconos -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
-    <!-- Lado Izquierdo: Interfaz de Usuario -->
-    <div class="user-interface">
-        <div class="logo-section">
-            <div class="logo">
-                <i class="fas fa-tv"></i>
-                <span>Ed TV</span>
-            </div>
-            <div class="online-users" id="globalUsersCount">312.931 usuarios en línea</div>
-            <div class="active-viewers" id="activeViewersCount">0 espectadores activos</div>
-        </div>
-
-        <!-- SECCIÓN DE BOTONES DE DESCARGA ELIMINADA -->
-
-        <div class="control-buttons">
-            <button class="control-btn" id="startButton">Iniciar</button>
-            <button class="control-btn stop" id="stopButton">Parar</button>
-            <button class="control-btn" id="countryButton">País</button>
-            <button class="control-btn" id="iamButton">Soy</button>
-        </div>
-    </div>
-
-    <!-- Lado Derecho: Video y Chat -->
-    <div class="video-chat-area">
-        <video id="strangerVideo" autoplay muted loop>
-            <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-        </video>
-        <video id="userVideo" autoplay muted></video>
-
-        <button class="report-btn" id="reportButton" style="display:none;"><i class="fas fa-flag"></i></button>
-
-        <div id="startPrompt" class="overlay-message">
-            <p>Para comenzar, presiona <strong>Iniciar</strong> y acepta las reglas. Mantén tu cámara visible.</p>
-        </div>
-        
-        <div class="top-controls" id="topControls">
-            <button id="micButton"><i class="fas fa-microphone-slash"></i></button>
-            <button id="fullscreenButton"><i class="fas fa-expand"></i></button>
-            <button id="settingsButton"><i class="fas fa-cog"></i></button>
-        </div>
-
-        <div class="chat-overlay" id="chatOverlay">
-            <div class="chat-messages" id="chatMessages"></div>
-            <div class="chat-input-area">
-                <form id="messageForm">
-                    <input type="text" id="messageInput" placeholder="Escribe un mensaje..." autocomplete="off">
-                </form>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modals -->
-    <div id="settingsModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('settingsModal')">&times;</span>
-            <h2>Configuración</h2>
-            <p>Ajusta tu experiencia aquí (solo por apariencia).</p>
-        </div>
-    </div>
-    <div id="countryModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('countryModal')">&times;</span>
-            <h2>Selecciona tu país</h2>
-            <ul>
-                <li>España</li>
-                <li>México</li>
-                <li>Argentina</li>
-                <li>Colombia</li>
-                <li>Estados Unidos</li>
+    <!-- ===================================
+         HEADER Y NAVEGACIÓN
+    ==================================== -->
+    <header class="main-header">
+        <nav class="main-nav container">
+            <a href="#" class="logo">PIXEL STUDIOS</a>
+            <button class="menu-toggle" id="menu-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="nav-links" id="nav-links">
+                <li><a href="#minecraft">Minecraft</a></li>
+                <li><a href="#colaboradores">Colaboradores</a></li>
+                <li><a href="#equipo">Equipo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- ===================================
+             SECCIÓN HERO
+        ==================================== -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>PIXEL STUDIOS</h1>
+                <p class="tagline-1">Convertimos tus ideas</p>
+                <p class="tagline-2">En Experiencias Inolvidables.</p>
+                
+                <!-- === PÁRRAFO AÑADIDO === -->
+                <p class="hero-description">
+                    Somos un estudio de desarrollo especializado en crear experiencias únicas. Con más de 5 años de experiencia, diseñamos y organizamos servidores, eventos y proyectos de todas las escalas, garantizando innovación y calidad en cada uno.
+                </p>
+
+            </div>
+        </section>
+
+        <!-- ===================================
+             SECCIÓN MINECRAFT
+        ==================================== -->
+        <section id="minecraft" class="minecraft-section">
+            <div class="container">
+                <div class="minecraft-text">
+                    <h2>Especialistas en Minecraft</h2>
+                    <p>Con más de 5 años en la industria, dominamos el arte de crear mundos y experiencias únicas dentro de Minecraft. Desde servidores personalizados hasta mapas épicos, tu visión es nuestro próximo proyecto.</p>
+                    <ul class="minecraft-services">
+                        <li><i class="fas fa-server"></i> Configuración de Servidores</li>
+                        <li><i class="fas fa-map"></i> Creación de Mapas y Mundos</li>
+                        <li><i class="fas fa-puzzle-piece"></i> Desarrollo de Plugins</li>
+                        <li><i class="fas fa-paint-brush"></i> Diseño de Texturas y Shaders</li>
+                    </ul>
+                </div>
+                <div class="minecraft-image">
+                    <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" alt="Minecraft World">
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             SECCIÓN COLABORADORES
+        ==================================== -->
+        <section id="colaboradores" class="colaboradores">
+            <div class="container">
+                <h2>Colaboradores</h2>
+                <div class="colaboradores-logos">
+                    <div class="logo-item"><i class="fab fa-twitch"></i></div>
+                    <div class="logo-item"><i class="fab fa-youtube"></i></div>
+                    <div class="logo-item"><i class="fab fa-discord"></i></div>
+                    <div class="logo-item"><i class="fab fa-twitter"></i></div>
+                    <div class="logo-item"><i class="fab fa-tiktok"></i></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             SECCIÓN EQUIPO
+        ==================================== -->
+        <section id="equipo" class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Nuestro Equipo</h2>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/150?img=68" alt="Miembro del equipo">
+                    <h3>TheDoxito</h3>
+                    <p>Líder de Proyecto</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/150?img=32" alt="Miembro del equipo">
+                    <h3>Sin Nombre</h3>
+                    <p>Artista 3D & Diseñadora</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/150?img=12" alt="Miembro del equipo">
+                    <h3>Sin Nombre</h3>
+                    <p>Desarrollador Principal</p>
+                </div>
+                <div class="team-card">
+                    <img src="https://i.pravatar.cc/150?img=47" alt="Miembro del equipo">
+                    <h3>Sin Nombre</h3>
+                    <p>Community Manager</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================================
+             SECCIÓN DE CONTACTO
+        ==================================== -->
+        <section id="contacto" class="contacto">
+            <div class="container">
+                <div class="contact-form">
+                    <h2>Envíanos un mensaje</h2>
+                    <form>
+                        <div class="form-group">
+                            <label for="name">Nombre</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Correo Electrónico</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Mensaje</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit">Enviar Mensaje</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h2>Información de Contacto</h2>
+                    <p><i class="fas fa-envelope"></i> pixelstudios@gmail.com</p>
+                    <p><i class="fab fa-discord"></i> Únete a nuestro Discord</p>
+                    <p><i class="fas fa-clock"></i> Lunes a Viernes, 9:00 - 18:00 (GMT)</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================================
+         FOOTER
+    ==================================== -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-discord"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>&copy; 2024 Pixel Studios. Todos los derechos reservados.</p>
         </div>
-    </div>
-    <div id="iamModal" class="modal">
-        <div class="modal-content">
-            <span class="close-modal" onclick="closeModal('iamModal')">&times;</span>
-            <h2>Yo soy...</h2>
-            <ul>
-                <li>Chico</li>
-                <li>Chica</li>
-                <li>Pareja</li>
-            </ul>
-        </div>
-    </div>
+    </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- ELEMENTOS DEL DOM ---
-            const startButton = document.getElementById('startButton');
-            const stopButton = document.getElementById('stopButton');
-            const strangerVideo = document.getElementById('strangerVideo');
-            const userVideo = document.getElementById('userVideo');
-            const startPrompt = document.getElementById('startPrompt');
-            const topControls = document.getElementById('topControls');
-            const chatOverlay = document.getElementById('chatOverlay');
-            const chatMessages = document.getElementById('chatMessages');
-            const messageForm = document.getElementById('messageForm');
-            const messageInput = document.getElementById('messageInput');
-            const micButton = document.getElementById('micButton');
-            const fullscreenButton = document.getElementById('fullscreenButton');
-            const reportButton = document.getElementById('reportButton');
+        // --- MENÚ HAMBURGUESA PARA MÓVILES ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
 
-            // --- ESTADO Y LÓGICA ---
-            let userStream = null;
-            let audioStream = null;
-            let conversationHistory = [];
-            const API_URL = 'http://localhost:3001/chat';
-            const WS_URL = 'ws://localhost:3001';
-
-            // --- CONEXIÓN WEBSOCKET PARA CONTEO DE VISTANTES ---
-            const ws = new WebSocket(WS_URL);
-            ws.onmessage = (event) => {
-                const data = JSON.parse(event.data);
-                if (data.type === 'viewerCount') {
-                    document.getElementById('activeViewersCount').textContent = `${data.count} espectadores activos`;
-                }
-            };
-
-            // --- SIMULACIÓN DE CONTEO GLOBAL DE USUARIOS ---
-            let globalUsers = 312931;
-            setInterval(() => {
-                const change = Math.floor(Math.random() * 21) - 10;
-                globalUsers += change;
-                if (globalUsers < 300000) globalUsers = 300000;
-                document.getElementById('globalUsersCount').textContent = `${globalUsers.toLocaleString('es-ES')} usuarios en línea`;
-            }, 5000);
-
-            // --- FUNCIONES ---
-            const addMessage = (text, sender) => {
-                const messageDiv = document.createElement('div');
-                messageDiv.classList.add('message', sender);
-                messageDiv.textContent = text;
-                chatMessages.appendChild(messageDiv);
-                chatMessages.scrollTop = chatMessages.scrollHeight;
-            };
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('nav-active');
             
-            const getBotResponse = async (userMessage) => {
-                conversationHistory.push({ role: 'user', content: userMessage });
-                try {
-                    const response = await fetch(API_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ messages: conversationHistory }) });
-                    const data = await response.json();
-                    const botReply = data.reply;
-                    conversationHistory.push({ role: 'assistant', content: botReply });
-                    addMessage(botReply, 'stranger');
-                } catch (error) {
-                    console.error('Error:', error);
-                    addMessage('El extraño se ha desconectado.', 'stranger');
-                }
-            };
+            const icon = menuToggle.querySelector('i');
+            if (navLinks.classList.contains('nav-active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
 
-            const startMedia = async () => {
-                try {
-                    userStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false });
-                    userVideo.srcObject = userStream;
-                    userVideo.style.display = 'block';
-                } catch (error) { console.error("Error de cámara:", error); userVideo.style.display = 'none'; }
-            };
-            const stopMedia = () => {
-                if (userStream) { userStream.getTracks().forEach(t => t.stop()); userStream = null; }
-                if (audioStream) { audioStream.getTracks().forEach(t => t.stop()); audioStream = null; }
-                userVideo.style.display = 'none';
-            };
-
-            const toggleMicrophone = async () => {
-                const icon = micButton.querySelector('i');
-                if (audioStream) {
-                    audioStream.getTracks().forEach(t => t.stop());
-                    audioStream = null;
-                    icon.className = 'fas fa-microphone-slash';
-                    micButton.classList.remove('active');
-                } else {
-                    try {
-                        audioStream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                        icon.className = 'fas fa-microphone';
-                        micButton.classList.add('active');
-                    } catch (error) { console.error("Error de micrófono:", error); }
-                }
-            };
-
-            const toggleFullscreen = () => {
-                if (!document.fullscreenElement) {
-                    document.documentElement.requestFullscreen();
-                    fullscreenButton.querySelector('i').className = 'fas fa-compress';
-                } else {
-                    document.exitFullscreen();
-                    fullscreenButton.querySelector('i').className = 'fas fa-expand';
-                }
-            };
-            
-            const openModal = (modalId) => { document.getElementById(modalId).style.display = 'flex'; };
-            const closeModal = (modalId) => { document.getElementById(modalId).style.display = 'none'; };
-            window.closeModal = closeModal;
-            
-            const startChat = () => {
-                startPrompt.style.display = 'none';
-                topControls.style.display = 'block';
-                chatOverlay.style.display = 'flex';
-                reportButton.style.display = 'block';
-                
-                strangerVideo.style.display = 'block';
-                strangerVideo.play();
-                startMedia();
-                getBotResponse("Hola, ¿qué tal?");
-            };
-
-            const stopChat = () => {
-                stopMedia();
-                strangerVideo.pause(); strangerVideo.currentTime = 0; strangerVideo.style.display = 'none';
-                conversationHistory = []; chatMessages.innerHTML = '';
-                topControls.style.display = 'none'; chatOverlay.style.display = 'none'; reportButton.style.display = 'none';
-                startPrompt.style.display = 'block';
-            };
-
-            // --- EVENT LISTENERS ---
-            startButton.addEventListener('click', startChat);
-            stopButton.addEventListener('click', stopChat);
-            micButton.addEventListener('click', toggleMicrophone);
-            fullscreenButton.addEventListener('click', toggleFullscreen);
-            document.getElementById('settingsButton').addEventListener('click', () => openModal('settingsModal'));
-            document.getElementById('countryButton').addEventListener('click', () => openModal('countryModal'));
-            document.getElementById('iamButton').addEventListener('click', () => openModal('iamModal'));
-            reportButton.addEventListener('click', () => alert('Usuario reportado. (Solo es una simulación)'));
-
-            messageForm.addEventListener('submit', (e) => {
-                e.preventDefault();
-                const text = messageInput.value.trim();
-                if (text) { addMessage(text, 'you'); messageInput.value = ''; getBotResponse(text); }
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('nav-active');
+                const icon = menuToggle.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             });
         });
     </script>
+
 </body>
 </html>

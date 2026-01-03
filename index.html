@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="pixelstudios.png" type="x-png">
     <title>Pixel Studios</title>
-    <meta name="description" content="Pixel Studios es un estudio de desarrollo especializado en crear experiencias únicas. Más de 5 años de experiencia innovando.">
+    <meta name="description" content="Somos creadores de contenido para creadores de contenido.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -189,48 +188,93 @@
             font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 800px;
-            margin: 2.5rem auto 0 auto; 
+            margin: 2.5rem auto 0 auto;
             font-weight: 400;
             line-height: 1.7;
         }
 
-        .minecraft-section .container {
-            display: flex;
-            align-items: center;
-            gap: 4rem;
+        .minecraft-section {
+            text-align: center;
         }
-        .minecraft-text {
-            flex: 1;
-        }
-        .minecraft-text h2 {
+        .minecraft-section h2 {
             font-size: 2.5rem;
-            margin-bottom: 1.5rem;
+            margin-bottom: 3rem;
             color: var(--primary-color);
         }
-        .minecraft-text p {
-            color: var(--text-secondary);
-            margin-bottom: 2rem;
-        }
-        .minecraft-services {
-            list-style: none;
-        }
-        .minecraft-services li {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-            font-weight: 600;
-        }
-        .minecraft-services i {
-            color: var(--secondary-color);
-            font-size: 1.5rem;
-        }
-        .minecraft-image {
-            flex: 1;
-        }
-        .minecraft-image img {
+        .slider-container {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            overflow: hidden;
             border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0, 217, 255, 0.2);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+        .slides-wrapper {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+        .slide img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        .image-lore {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(12, 12, 12, 0.8);
+            color: var(--text-primary);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+        .slide:hover .image-lore {
+            opacity: 1;
+        }
+        .image-lore h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+        .image-lore p {
+            font-size: 1rem;
+            max-width: 80%;
+        }
+
+        .slider-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--text-primary);
+            border: none;
+            padding: 15px;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: background-color 0.3s ease;
+            z-index: 10;
+        }
+        .slider-nav:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+        .prev-slide {
+            left: 10px;
+            border-radius: 0 5px 5px 0;
+        }
+        .next-slide {
+            right: 10px;
+            border-radius: 5px 0 0 5px;
         }
 
         .colaboradores {
@@ -261,9 +305,8 @@
         }
 
         .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
+            display: flex;
+            justify-content: center;
         }
         .team-card {
             background-color: var(--surface-color);
@@ -272,6 +315,7 @@
             border-radius: 15px;
             border: 1px solid rgba(255, 255, 255, 0.05);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            max-width: 300px;
         }
         .team-card:hover {
             transform: translateY(-10px);
@@ -411,7 +455,6 @@
             .hero {
                 background-attachment: scroll;
             }
-            .minecraft-section .container,
             .contacto .container {
                 flex-direction: column;
                 gap: 2rem;
@@ -442,28 +485,34 @@
                 <h1>PIXEL STUDIOS</h1>
                 <p class="tagline-1">Convertimos tus ideas</p>
                 <p class="tagline-2">En Experiencias Inolvidables.</p>
-                
                 <p class="hero-description">
                     Somos un estudio de desarrollo especializado en crear experiencias únicas. Con más de 5 años de experiencia, diseñamos y organizamos servidores, eventos y proyectos de todas las escalas, garantizando innovación y calidad en cada uno.
                 </p>
-
             </div>
         </section>
-      
+
         <section id="minecraft" class="minecraft-section">
             <div class="container">
-                <div class="minecraft-text">
-                    <h2>Especialistas en Minecraft</h2>
-                    <p>Con más de 5 años en la industria, dominamos el arte de crear mundos y experiencias únicas dentro de Minecraft. Desde servidores personalizados hasta mapas épicos, tu visión es nuestro próximo proyecto.</p>
-                    <ul class="minecraft-services">
-                        <li><i class="fas fa-server"></i> Configuración de Servidores</li>
-                        <li><i class="fas fa-map"></i> Creación de Mapas y Mundos</li>
-                        <li><i class="fas fa-puzzle-piece"></i> Desarrollo de Plugins</li>
-                        <li><i class="fas fa-paint-brush"></i> Diseño de Texturas y Shaders</li>
-                    </ul>
-                </div>
-                <div class="minecraft-image">
-                    <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80" alt="Minecraft World">
+                <h2>Nuestros Proyectos</h2>
+                <div class="slider-container">
+                    <div class="slides-wrapper">
+                        <div class="slide">
+                            <img src="https://z-cdn-media.chatglm.cn/files/709056c6-d5e0-48dc-9dfd-1f6854bb3bec.png?auth_key=1867413779-bdbb1ad23ec14c80b665f8acba8bbe58-0-3aa4827aa4b4b7d19eb87b896a1997f6" alt="Proyecto Simon Dice">
+                            <div class="image-lore">
+                                <h3>¿Simon Dice?</h3>
+                                <p>Evento inspirado en del de @SpreenDMC, el cual tenian que acatar las ordenes de simon, el evento también contuvo minijuegos extras y con mucha tensión.</p>
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <img src="https://z-cdn-media.chatglm.cn/files/f3a16135-75fe-4608-a921-7c867fd78969.png?auth_key=1867415306-f6bef19e0a91498eb4d639361de8d2a7-0-24e707408f4360e6109c2ac83d3a8e53" alt="Proyecto Squids Pixel Games">
+                            <div class="image-lore">
+                                <h3>¿Squids Pixel Games?</h3>
+                                <p>El primer Gran evento del estudio inspirado en los Squid Craft Games de @eufonia studios, con duracion de 2 dias y con juegos inspirados en los SCG y en la serie de netflix Squid Game.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="slider-nav prev-slide"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-nav next-slide"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </section>
@@ -482,10 +531,10 @@
         </section>
 
         <section id="equipo" class="container">
-            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Nuestro Equipo</h2>
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Líder del Proyecto</h2>
             <div class="team-grid">
                 <div class="team-card">
-                    <img src="https://z-cdn-media.chatglm.cn/files/e7417aaa-d221-4255-9002-b5d7e9da04f7.png?auth_key=1867402735-340fde6c2ab247979d33d513dedbdec9-0-48e5c1c467792152698cd1933c52c907" alt="Miembro del equipo">
+                    <img src="https://i.pravatar.cc/150?img=68" alt="Líder del Proyecto">
                     <h3>TheDoxito</h3>
                     <p>Líder de Proyecto</p>
                 </div>
@@ -514,7 +563,7 @@
                 </div>
                 <div class="contact-info">
                     <h2>Información de Contacto</h2>
-                    <p><i class="fas fa-envelope"></i> pixelstudios@gmail.com</p>
+                    <p><i class="fas fa-envelope"></i> hola@pixelstudios.com</p>
                     <p><i class="fab fa-discord"></i> Únete a nuestro Discord</p>
                     <p><i class="fas fa-clock"></i> Lunes a Viernes, 9:00 - 18:00 (GMT)</p>
                 </div>
@@ -559,6 +608,34 @@
                 icon.classList.add('fa-bars');
             });
         });
+
+        const slidesWrapper = document.querySelector('.slides-wrapper');
+        const slides = document.querySelectorAll('.slide');
+        const prevBtn = document.querySelector('.prev-slide');
+        const nextBtn = document.querySelector('.next-slide');
+        let currentSlide = 0;
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            if (index < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (index >= totalSlides) {
+                currentSlide = 0;
+            } else {
+                currentSlide = index;
+            }
+            const offset = -currentSlide * 100;
+            slidesWrapper.style.transform = `translateX(${offset}%)`;
+        }
+
+        nextBtn.addEventListener('click', () => {
+            showSlide(currentSlide + 1);
+        });
+
+        prevBtn.addEventListener('click', () => {
+            showSlide(currentSlide - 1);
+        });
+
     </script>
 
 </body>

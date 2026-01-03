@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel Studios</title>
-    <meta name="description" content="Creamos contenido para creadores de contenido.">
+    <title data-translate="page-title">Pixel Studios - Convertimos tus ideas en Experiencias Inolvidables</title>
+    <meta name="description" data-translate="page-description" content="Pixel Studios es un estudio de desarrollo especializado en crear experiencias únicas. Más de 5 años de experiencia innovando.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -111,6 +111,7 @@
             list-style: none;
             display: flex;
             gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-links a {
@@ -138,6 +139,34 @@
 
         .nav-links a:hover::after {
             width: 100%;
+        }
+
+        /* --- ESTILOS PARA EL SELECTOR DE IDIOMA --- */
+        .language-switcher {
+            display: flex;
+            background-color: var(--surface-color);
+            border-radius: 50px;
+            padding: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-btn {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            padding: 8px 12px;
+            margin: 0 2px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            box-shadow: 0 0 10px rgba(0, 217, 255, 0.5);
         }
 
         .menu-toggle {
@@ -401,9 +430,13 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#colaboradores">Colaboradores</a></li>
-                <li><a href="#anuncios">Anuncios</a></li>
-                <li><a href="#contacto">Contacto</a></li>
+                <li><a href="#colaboradores" data-translate="nav-collaborators">Colaboradores</a></li>
+                <li><a href="#anuncios" data-translate="nav-ads">Anuncios</a></li>
+                <li><a href="#contacto" data-translate="nav-contact">Contacto</a></li>
+                <li class="language-switcher">
+                    <button class="lang-btn active" data-lang="es">ES</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </li>
             </ul>
         </nav>
     </header>
@@ -412,9 +445,9 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>PIXEL STUDIOS</h1>
-                <p class="tagline-1">Convertimos tus ideas</p>
-                <p class="tagline-2">En Experiencias Inolvidables.</p>
-                <p class="hero-description">
+                <p class="tagline-1" data-translate="hero-tagline-1">Convertimos tus ideas</p>
+                <p class="tagline-2" data-translate="hero-tagline-2">En Experiencias Inolvidables.</p>
+                <p class="hero-description" data-translate="hero-description">
                     Somos un estudio de desarrollo especializado en crear experiencias únicas. Con más de 5 años de experiencia, diseñamos y organizamos servidores, eventos y proyectos de todas las escalas, garantizando innovación y calidad en cada uno.
                 </p>
             </div>
@@ -422,7 +455,7 @@
 
         <section id="colaboradores" class="colaboradores">
             <div class="container">
-                <h2>Colaboradores</h2>
+                <h2 data-translate="collab-title">Colaboradores</h2>
                 <div class="colaboradores-logos">
                     <div class="logo-item"><a href="https://www.patreon.com/pixelteam" target="_blank"><i class="fab fa-patreon"></i></a></div>
                     <div class="logo-item"><a href="https://x.com/PixelStuudios" target="_blank"><i class="fab fa-twitter"></i></a></div>
@@ -432,37 +465,37 @@
 
         <section id="anuncios" class="anuncios-section">
             <div class="container">
-                <h2>Anuncios</h2>
-                <p>Aqui mandaremos horas de nuestros eventos y anuncios que debamos hacer</p>
-                <a href="anuncios.html" class="cta-button">Saber Más</a>
+                <h2 data-translate="ads-title">Anuncios</h2>
+                <p data-translate="ads-description">Aqui mandaremos horas de nuestros eventos y anuncios que debamos hacer</p>
+                <a href="anuncios.html" class="cta-button" data-translate="ads-button">Saber Más</a>
             </div>
         </section>
 
         <section id="contacto" class="contacto">
             <div class="container">
                 <div class="contact-form">
-                    <h2>Envíanos un mensaje</h2>
+                    <h2 data-translate="contact-form-title">Envíanos un mensaje</h2>
                     <form>
                         <div class="form-group">
-                            <label for="name">Nombre</label>
+                            <label for="name" data-translate="contact-name-label">Nombre</label>
                             <input type="text" id="name" name="name" required>
                         </div>
                         <div class="form-group">
-                            <label for="email">Correo Electrónico</label>
+                            <label for="email" data-translate="contact-email-label">Correo Electrónico</label>
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Mensaje</label>
+                            <label for="message" data-translate="contact-message-label">Mensaje</label>
                             <textarea id="message" name="message" rows="5" required></textarea>
                         </div>
-                        <button type="submit">Enviar Mensaje</button>
+                        <button type="submit" data-translate="contact-button">Enviar Mensaje</button>
                     </form>
                 </div>
                 <div class="contact-info">
-                    <h2>Información de Contacto</h2>
+                    <h2 data-translate="contact-info-title">Información de Contacto</h2>
                     <p><i class="fas fa-envelope"></i> hola@pixelstudios.com</p>
-                    <p><i class="fab fa-discord"></i> Únete a nuestro Discord</p>
-                    <p><i class="fas fa-clock"></i> Lunes a Viernes, 9:00 - 18:00 (GMT)</p>
+                    <p><i class="fab fa-discord"></i> <span data-translate="contact-discord">Únete a nuestro Discord</span></p>
+                    <p><i class="fas fa-clock"></i> <span data-translate="contact-hours">Lunes a Viernes, 9:00 - 18:00 (GMT)</span></p>
                 </div>
             </div>
         </section>
@@ -476,11 +509,99 @@
                 <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
                 <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
-            <p>&copy; 2024 Pixel Studios. Todos los derechos reservados.</p>
+            <p data-translate="footer-copyright">&copy; 2024 Pixel Studios. Todos los derechos reservados.</p>
         </div>
     </footer>
 
     <script>
+        const translations = {
+            es: {
+                "page-title": "Pixel Studios - Convertimos tus ideas en Experiencias Inolvidables",
+                "page-description": "Pixel Studios es un estudio de desarrollo especializado en crear experiencias únicas. Más de 5 años de experiencia innovando.",
+                "nav-collaborators": "Colaboradores",
+                "nav-ads": "Anuncios",
+                "nav-contact": "Contacto",
+                "hero-tagline-1": "Convertimos tus ideas",
+                "hero-tagline-2": "En Experiencias Inolvidables.",
+                "hero-description": "Somos un estudio de desarrollo especializado en crear experiencias únicas. Con más de 5 años de experiencia, diseñamos y organizamos servidores, eventos y proyectos de todas las escalas, garantizando innovación y calidad en cada uno.",
+                "collab-title": "Colaboradores",
+                "ads-title": "Anuncios",
+                "ads-description": "Aqui mandaremos horas de nuestros eventos y anuncios que debamos hacer",
+                "ads-button": "Saber Más",
+                "contact-form-title": "Envíanos un mensaje",
+                "contact-name-label": "Nombre",
+                "contact-email-label": "Correo Electrónico",
+                "contact-message-label": "Mensaje",
+                "contact-button": "Enviar Mensaje",
+                "contact-info-title": "Información de Contacto",
+                "contact-discord": "Únete a nuestro Discord",
+                "contact-hours": "Lunes a Viernes, 9:00 - 18:00 (GMT)",
+                "footer-copyright": "&copy; 2024 Pixel Studios. Todos los derechos reservados."
+            },
+            en: {
+                "page-title": "Pixel Studios - We Turn Your Ideas into Unforgettable Experiences",
+                "page-description": "Pixel Studios is a development studio specialized in creating unique experiences. With over 5 years of experience innovating.",
+                "nav-collaborators": "Collaborators",
+                "nav-ads": "Advertisements",
+                "nav-contact": "Contact",
+                "hero-tagline-1": "We turn your ideas",
+                "hero-tagline-2": "Into Unforgettable Experiences.",
+                "hero-description": "We are a development studio specialized in creating unique experiences. With over 5 years of experience, we design and organize servers, events, and projects of all scales, guaranteeing innovation and quality in each one.",
+                "collab-title": "Collaborators",
+                "ads-title": "Advertisements",
+                "ads-description": "Here we will post hours of our events and advertisements we need to do.",
+                "ads-button": "Learn More",
+                "contact-form-title": "Send us a message",
+                "contact-name-label": "Name",
+                "contact-email-label": "Email Address",
+                "contact-message-label": "Message",
+                "contact-button": "Send Message",
+                "contact-info-title": "Contact Information",
+                "contact-discord": "Join our Discord",
+                "contact-hours": "Monday to Friday, 9:00 AM - 6:00 PM (GMT)",
+                "footer-copyright": "&copy; 2024 Pixel Studios. All rights reserved."
+            }
+        };
+
+        const langButtons = document.querySelectorAll('.lang-btn');
+        const elementsToTranslate = document.querySelectorAll('[data-translate]');
+
+        function setLanguage(lang) {
+            elementsToTranslate.forEach(element => {
+                const key = element.getAttribute('data-translate');
+                if (translations[lang] && translations[lang][key]) {
+                    element.textContent = translations[lang][key];
+                }
+            });
+
+            // Update the html lang attribute
+            document.documentElement.lang = lang;
+
+            // Update active button style
+            langButtons.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+
+            // Save preference to localStorage
+            localStorage.setItem('selectedLanguage', lang);
+        }
+
+        // Check for saved language preference or default to 'es'
+        const savedLanguage = localStorage.getItem('selectedLanguage') || 'es';
+        setLanguage(savedLanguage);
+
+        // Add event listeners to language buttons
+        langButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const selectedLang = button.getAttribute('data-lang');
+                setLanguage(selectedLang);
+            });
+        });
+
+        // --- MENU HAMBURGUESA PARA MÓVILES ---
         const menuToggle = document.getElementById('menu-toggle');
         const navLinks = document.getElementById('nav-links');
 

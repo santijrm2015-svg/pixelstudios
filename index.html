@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="logo.png" type="x-png">
     <title>Pixel Studios</title>
-    <meta name="description" content="Somos creadores de contenido para creadores de contenido.">
+    <meta name="description" content="Creamos contenido para creadores de contenido.">
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -36,10 +35,25 @@
 
         body {
             font-family: var(--font-family);
-            background-color: var(--background-color);
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1932&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(12, 12, 12, 0.8);
+            z-index: -1;
         }
 
         .container {
@@ -194,88 +208,37 @@
             line-height: 1.7;
         }
 
-        .minecraft-section {
+        .anuncios-section {
             text-align: center;
         }
-        .minecraft-section h2 {
+        .anuncios-section h2 {
             font-size: 2.5rem;
-            margin-bottom: 3rem;
+            margin-bottom: 1.5rem;
             color: var(--primary-color);
         }
-        .slider-container {
-            position: relative;
-            max-width: 900px;
-            margin: 0 auto;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        .anuncios-section p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            line-height: 1.7;
         }
-        .slides-wrapper {
-            display: flex;
-            transition: transform 0.5s ease-in-out;
-        }
-        .slide {
-            min-width: 100%;
-            position: relative;
-        }
-        .slide img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .image-lore {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(12, 12, 12, 0.8);
-            color: var(--text-primary);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 2rem;
-            opacity: 0;
-            transition: opacity 0.4s ease;
-        }
-        .slide:hover .image-lore {
-            opacity: 1;
-        }
-        .image-lore h3 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-            color: var(--secondary-color);
-        }
-        .image-lore p {
+        .anuncios-section .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 12px 30px;
+            border-radius: 50px;
+            font-weight: 700;
             font-size: 1rem;
-            max-width: 80%;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
         }
-
-        .slider-nav {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
+        .anuncios-section .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 217, 255, 0.6);
+            background-color: var(--secondary-color);
             color: var(--text-primary);
-            border: none;
-            padding: 15px;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: background-color 0.3s ease;
-            z-index: 10;
-        }
-        .slider-nav:hover {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-        .prev-slide {
-            left: 10px;
-            border-radius: 0 5px 5px 0;
-        }
-        .next-slide {
-            right: 10px;
-            border-radius: 5px 0 0 5px;
         }
 
         .colaboradores {
@@ -290,11 +253,11 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 3rem;
+            gap: 4rem;
             flex-wrap: wrap;
         }
         .colaboradores-logos .logo-item {
-            font-size: 3rem;
+            font-size: 3.5rem;
             color: var(--text-secondary);
             opacity: 0.6;
             transition: all 0.3s ease;
@@ -303,40 +266,6 @@
             opacity: 1;
             color: var(--primary-color);
             transform: scale(1.1);
-        }
-
-        .team-grid {
-            display: flex;
-            justify-content: center;
-        }
-        .team-card {
-            background-color: var(--surface-color);
-            text-align: center;
-            padding: 2rem;
-            border-radius: 15px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            max-width: 300px;
-        }
-        .team-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4);
-        }
-        .team-card img {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            margin: 0 auto 1.5rem auto;
-            border: 4px solid var(--primary-color);
-        }
-        .team-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-        }
-        .team-card p {
-            color: var(--primary-color);
-            font-size: 0.9rem;
-            font-weight: 600;
         }
 
         .contacto {
@@ -406,7 +335,7 @@
         }
 
         .main-footer {
-            background-color: var(--background-color);
+            background-color: var(--surface-color);
             padding: 40px 0;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -467,13 +396,13 @@
 
     <header class="main-header">
         <nav class="main-nav container">
-            <a href="#" class="logo">PIXEL STUDIOS</a>
+            <a href="index.html" class="logo">PIXEL STUDIOS</a>
             <button class="menu-toggle" id="menu-toggle">
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links" id="nav-links">
-                <li><a href="#minecraft">Minecraft</a></li>
                 <li><a href="#colaboradores">Colaboradores</a></li>
+                <li><a href="#anuncios">Anuncios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
@@ -491,42 +420,21 @@
             </div>
         </section>
 
-        <section id="minecraft" class="minecraft-section">
-            <div class="container">
-                <h2>Nuestros Proyectos</h2>
-                <div class="slider-container">
-                    <div class="slides-wrapper">
-                        <div class="slide">
-                            <img src="https://z-cdn-media.chatglm.cn/files/709056c6-d5e0-48dc-9dfd-1f6854bb3bec.png?auth_key=1867413779-bdbb1ad23ec14c80b665f8acba8bbe58-0-3aa4827aa4b4b7d19eb87b896a1997f6" alt="Proyecto Simon Dice">
-                            <div class="image-lore">
-                                <h3>¿Simon Dice?</h3>
-                                <p>Evento inspirado en del de @SpreenDMC, el cual tenian que acatar las ordenes de simon, el evento también contuvo minijuegos extras y con mucha tensión.</p>
-                            </div>
-                        </div>
-                        <div class="slide">
-                            <img src="https://z-cdn-media.chatglm.cn/files/f3a16135-75fe-4608-a921-7c867fd78969.png?auth_key=1867415306-f6bef19e0a91498eb4d639361de8d2a7-0-24e707408f4360e6109c2ac83d3a8e53" alt="Proyecto Squids Pixel Games">
-                            <div class="image-lore">
-                                <h3>¿Squids Pixel Games?</h3>
-                                <p>El primer Gran evento del estudio inspirado en los Squid Craft Games de @eufonia studios, con duracion de 2 dias y con juegos inspirados en los SCG y en la serie de netflix Squid Game.</p>
-                            </div>
-                        </div>
-                    </div>
-                    <button class="slider-nav prev-slide"><i class="fas fa-chevron-left"></i></button>
-                    <button class="slider-nav next-slide"><i class="fas fa-chevron-right"></i></button>
-                </div>
-            </div>
-        </section>
-
         <section id="colaboradores" class="colaboradores">
             <div class="container">
                 <h2>Colaboradores</h2>
                 <div class="colaboradores-logos">
-                    <div class="logo-item"><i class="fab fa-twitch"></i></div>
-                    <div class="logo-item"><i class="fab fa-youtube"></i></div>
-                    <div class="logo-item"><i class="fab fa-discord"></i></div>
-                    <div class="logo-item"><i class="fab fa-twitter"></i></div>
-                    <div class="logo-item"><i class="fab fa-tiktok"></i></div>
+                    <div class="logo-item"><a href="https://www.patreon.com/pixelteam" target="_blank"><i class="fab fa-patreon"></i></a></div>
+                    <div class="logo-item"><a href="https://x.com/PixelStuudios" target="_blank"><i class="fab fa-twitter"></i></a></div>
                 </div>
+            </div>
+        </section>
+
+        <section id="anuncios" class="anuncios-section">
+            <div class="container">
+                <h2>Anuncios</h2>
+                <p>Aqui mandaremos horas de nuestros eventos y anuncios que debamos hacer</p>
+                <a href="anuncios.html" class="cta-button">Saber Más</a>
             </div>
         </section>
 
@@ -563,10 +471,10 @@
     <footer class="main-footer">
         <div class="container">
             <div class="social-links">
-                <a href="#"><i class="fab fa-twitter"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-discord"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="https://x.com/PixelStuudios" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-discord"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
             <p>&copy; 2024 Pixel Studios. Todos los derechos reservados.</p>
         </div>
@@ -597,34 +505,6 @@
                 icon.classList.add('fa-bars');
             });
         });
-
-        const slidesWrapper = document.querySelector('.slides-wrapper');
-        const slides = document.querySelectorAll('.slide');
-        const prevBtn = document.querySelector('.prev-slide');
-        const nextBtn = document.querySelector('.next-slide');
-        let currentSlide = 0;
-        const totalSlides = slides.length;
-
-        function showSlide(index) {
-            if (index < 0) {
-                currentSlide = totalSlides - 1;
-            } else if (index >= totalSlides) {
-                currentSlide = 0;
-            } else {
-                currentSlide = index;
-            }
-            const offset = -currentSlide * 100;
-            slidesWrapper.style.transform = `translateX(${offset}%)`;
-        }
-
-        nextBtn.addEventListener('click', () => {
-            showSlide(currentSlide + 1);
-        });
-
-        prevBtn.addEventListener('click', () => {
-            showSlide(currentSlide - 1);
-        });
-
     </script>
 
 </body>

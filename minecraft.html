@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Minecraft - PixelStudios</title>
+    <title>Nuestras Creaciones en Minecraft - Estilo Pixel Art</title>
     
-    <!-- Importamos una fuente de estilo pixel art desde Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     
     <style>
-        /* Estilos generales de la página */
         body {
             margin: 0;
             padding: 0;
-            font-family: 'Press Start 2P', cursive; /* Usamos la fuente pixel art */
+            font-family: 'Press Start 2P', cursive;
             background-color: #000;
             display: flex;
             justify-content: center;
@@ -23,11 +21,10 @@
             min-height: 100vh;
         }
 
-        /* Contenedor principal con el fondo degradado amarillo */
         .pixel-container {
             width: 90%;
             max-width: 800px;
-            background: linear-gradient(to bottom, #ffc800, #ffed4e); /* Fondo amarillo cálido */
+            background: linear-gradient(to bottom, #ffc800, #ffed4e);
             padding: 40px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(255, 200, 0, 0.5);
@@ -35,37 +32,33 @@
             text-align: center;
         }
 
-        /* Texto en la esquina superior derecha, como "ABTMELODY" */
         .top-right-text {
             position: absolute;
             top: 20px;
             right: 20px;
             font-size: 12px;
-            color: #333; /* Color oscuro para contraste con el amarillo */
+            color: #333;
         }
 
-        /* Título principal grande y centrado */
         h1 {
-            font-size: 2.5rem; /* Tamaño grande para el título */
-            color: #8B4789; /* Color púrpura de Minecraft */
+            font-size: 2.5rem;
+            color: #8B4789;
             margin: 40px 0;
-            text-shadow: 3px 3px #000000; /* Sombra para dar efecto de profundidad */
+            text-shadow: 3px 3px #000000;
         }
 
-        /* Párrafos de texto con estilo azul y en negrita */
         .main-content p {
-            font-size: 14px; /* Tamaño legible para la fuente pixel */
-            color: #0056b3; /* Color azul brillante */
-            line-height: 2; /* Espaciado generoso para facilitar la lectura */
+            font-size: 14px;
+            color: #0056b3;
+            line-height: 2;
             margin-bottom: 1.5em;
             text-shadow: 1px 1px #000000;
         }
 
-        /* --- ESTILOS PARA EL NUEVO CONTENIDO --- */
         .new-section {
-            margin-top: 40px; /* Espacio superior para separarlo del contenido anterior */
+            margin-top: 40px;
             padding-top: 20px;
-            border-top: 4px dashed #0056b3; /* Una línea para separar visualmente */
+            border-top: 4px dashed #0056b3;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -73,17 +66,17 @@
         }
 
         .event-image {
-            max-width: 100%; /* Cambiado a 100% para que la imagen ancha se vea bien */
+            max-width: 100%;
             height: auto;
-            margin-bottom: 15px; /* Espacio entre la imagen y la fecha */
-            filter: drop-shadow(3px 3px 0 #000); /* Sombra para mantener el estilo pixel */
-            border-radius: 5px; /* Bordes redondeados para que coincida con el contenedor */
+            margin-bottom: 15px;
+            filter: drop-shadow(3px 3px 0 #000);
+            border-radius: 5px;
         }
 
         .event-date {
             font-size: 16px;
-            color: #000; /* Color negro para la fecha */
-            text-shadow: 1px 1px 0 #ff6b6b; /* Sombra roja para resaltar */
+            color: #000;
+            text-shadow: 1px 1px 0 #ff6b6b;
             margin-top: 0;
         }
     </style>
@@ -91,13 +84,10 @@
 <body>
 
     <div class="pixel-container">
-        <!-- Texto en la esquina superior derecha -->
         <div class="top-right-text">Nuestras creaciones en</div>
         
-        <!-- Título principal centrado -->
         <h1>MINECRAFT</h1>
         
-        <!-- Contenido del mensaje -->
         <div class="main-content">
             <p>
                 A lo largo de los años, hemos desarrollado una gran variedad de proyectos dentro de Minecraft.
@@ -113,9 +103,6 @@
             </p>
         </div>
 
-        <!-- ======================================= -->
-        <!-- NUEVO CONTENIDO: IMAGEN DE SIMON DICE Y FECHA -->
-        <!-- ======================================= -->
         <div class="new-section">
             <img src="https://z-cdn-media.chatglm.cn/files/45541626-548a-43e4-97da-a96e3bdcf628.png?auth_key=1867484068-8be241cc740c44f9af190d91506f9e90-0-7689da0c3b8a85bed808ac7dbbe484e6" alt="Escena del juego Simon Dice en un castillo de Minecraft" class="event-image">
             <p class="event-date">20 dic 2025</p>

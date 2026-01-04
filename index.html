@@ -48,16 +48,16 @@
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -1; /* Se queda detrás de todo el contenido */
+            z-index: -1;
             display: flex;
             justify-content: center;
             align-items: center;
-            background-color: #0a0a0a; /* Un fondo un poco más oscuro para el logo */
+            background-color: #0a0a0a;
         }
         .logo-background img {
-            max-width: 40%; /* Tamaño responsivo del logo */
-            opacity: 0.07; /* Opacidad muy baja para que no distraiga */
-            filter: grayscale(100%) brightness(1.5); /* Monocromo y un poco más brillante */
+            max-width: 40%;
+            opacity: 0.07;
+            filter: grayscale(100%) brightness(1.5);
         }
 
         .container {
@@ -145,7 +145,6 @@
             width: 100%;
         }
 
-        /* --- ESTILOS PARA EL SELECTOR DE IDIOMA --- */
         .language-switcher {
             display: flex;
             background-color: var(--surface-color);
@@ -428,7 +427,6 @@
 <body>
 
     <!-- ====== FONDO CON EL LOGO ====== -->
-    <!-- IMPORTANTE: Reemplaza 'URL_DE_TU_LOGO_AQUI.png' con la ruta a tu archivo de logo. -->
     <div class="logo-background">
         <img src="URL_DE_TU_LOGO_AQUI.png" alt="Pixel Studios Logo">
     </div>
@@ -440,6 +438,7 @@
                 <i class="fas fa-bars"></i>
             </button>
             <ul class="nav-links" id="nav-links">
+                <li><a href="minecraft.html" data-translate="nav-minecraft">Minecraft</a></li>
                 <li><a href="#colaboradores" data-translate="nav-collaborators">Colaboradores</a></li>
                 <li><a href="#anuncios" data-translate="nav-ads">Anuncios</a></li>
                 <li><a href="#contacto" data-translate="nav-contact">Contacto</a></li>
@@ -528,6 +527,7 @@
             es: {
                 "page-title": "Pixel Studios - Convertimos tus ideas en Experiencias Inolvidables",
                 "page-description": "Pixel Studios es un estudio de desarrollo especializado en crear experiencias únicas. Más de 5 años de experiencia innovando.",
+                "nav-minecraft": "Minecraft",
                 "nav-collaborators": "Colaboradores",
                 "nav-ads": "Anuncios",
                 "nav-contact": "Contacto",
@@ -551,6 +551,7 @@
             en: {
                 "page-title": "Pixel Studios - We Turn Your Ideas into Unforgettable Experiences",
                 "page-description": "Pixel Studios is a development studio specialized in creating unique experiences. With over 5 years of experience innovating.",
+                "nav-minecraft": "Minecraft",
                 "nav-collaborators": "Collaborators",
                 "nav-ads": "Advertisements",
                 "nav-contact": "Contact",
@@ -583,27 +584,19 @@
                     element.textContent = translations[lang][key];
                 }
             });
-
-            // Update the html lang attribute
             document.documentElement.lang = lang;
-
-            // Update active button style
             langButtons.forEach(btn => {
                 btn.classList.remove('active');
                 if (btn.getAttribute('data-lang') === lang) {
                     btn.classList.add('active');
                 }
             });
-
-            // Save preference to localStorage
             localStorage.setItem('selectedLanguage', lang);
         }
 
-        // Check for saved language preference or default to 'es'
         const savedLanguage = localStorage.getItem('selectedLanguage') || 'es';
         setLanguage(savedLanguage);
 
-        // Add event listeners to language buttons
         langButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const selectedLang = button.getAttribute('data-lang');
